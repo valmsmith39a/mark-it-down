@@ -20,18 +20,15 @@ app.use(express.static('public'));
 // get index.html file for local server port 4000
 app.get('/', function(req, res){
 	fs.readFile('./index.html', function(err, data){
+		console.log('in the get html file');
 		var html = fs.readFileSync('./index.html').toString();
 		res.send(html);
 	});
 });
 
-// markdown route 
-app.post('/markdown', function(req, res) {
-  var markdowntext = req.body.markdowntext; 
-  var convertedHTMLText = marked(markdowntext);
-  res.send(convertedHTMLText);
-});
+app.use('/markdowns', require('./routes/markdowns'));
 
 app.listen(PORT, function(){
 	console.log('on local server port: ' + PORT);
 })
+

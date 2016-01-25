@@ -6,7 +6,7 @@ function init(){
 
 function submitTextBtn(){
   var markdownInput = $('#input-text').val();
-  $.post('/markdown', {markdowntext:markdownInput})
+  $.post('/markdowns', {markdowntext:markdownInput})
   .success(function(data) {
     $('#output-text').append($.parseHTML(data));
   }).fail(function(err) {
